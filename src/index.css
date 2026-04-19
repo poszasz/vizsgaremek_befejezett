@@ -88,8 +88,125 @@ body {
   color: #ccc !important;
 }
 
-.responsive-container {
-  width: 100%;
-  max-width: 800px;
-  padding: 0 15px;
+/* Reszponzív beállítások */
+@media (max-width: 768px) {
+    /* Container padding csökkentése */
+    .container-fluid {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* Gombok és kártyák méretezése */
+    .btn, button {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Kártya rács mobilnézetben */
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .col-md-3, .col-md-4, .col-md-6 {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+    
+    /* Modal szélesség mobilban */
+    .modal-content {
+        width: 95% !important;
+        margin: 10px !important;
+    }
+}
+
+/* Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+    /* Logo mérete */
+    .navbar img {
+        height: 40px !important;
+    }
+    
+    /* Kártyák egymás alá rendezése */
+    .cards-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Betűméretek */
+    body {
+        font-size: 14px;
+    }
+    
+    /* Padding-ek csökkentése */
+    .p-4 {
+        padding: 1rem !important;
+    }
+    
+    /* Filter gombok egymás alá */
+    .filter-buttons {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+/* Táblagép nézet (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+    }
+    
+    .col-md-3 {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+    }
+}
+
+/* Reszponzív képek */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Reszponzív kártya rács a MyCardsPage-hez */
+@media (max-width: 1200px) {
+    .cards-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .cards-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Overlay animáció */
+.menu-overlay {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

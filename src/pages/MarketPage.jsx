@@ -76,14 +76,14 @@ export default function MarketPage() {
   };
 
   const loadIncomingOffers = async () => {
-  console.log("Betöltöm a beérkező ajánlatokat...");
-  const res = await getIncomingOffers();
-  console.log("Beérkező ajánlatok válasza:", res);
-  if (res.result) {
-    console.log("Offerek száma:", res.offers.length);
-    setIncomingOffers(res.offers);
-  }
-};
+    console.log("Betöltöm a beérkező ajánlatokat...");
+    const res = await getIncomingOffers();
+    console.log("Beérkező ajánlatok válasza:", res);
+    if (res.result) {
+      console.log("Offerek száma:", res.offers.length);
+      setIncomingOffers(res.offers);
+    }
+  };
 
   const applyFilter = () => {
     if (!user) return;
@@ -283,101 +283,111 @@ export default function MarketPage() {
       <Navbar title="Market" user={user} onLogout={handleLogout} />
 
       <div
-        className="flex-grow-1 container-fluid p-4 responsive-container"
+        className="flex-grow-1 container-fluid p-4"
         style={{ overflowY: "auto", backgroundColor: "#f5f5f5" }}
       >
-        {/* Szűrő sor */}
+        {/* Szűrő sor - reszponzív */}
         <div className="row mb-4 align-items-center">
-          <div className="col-12 d-flex justify-content-between align-items-center responsive-container">
-            <div style={{ width: "120px" }}></div>
-            <FilterButtons
-              filterType={filterType}
-              setFilterType={setFilterType}
-              counts={filterCounts}
-            />
+          <div className="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+            {/ FilterButtons komponens /}
+            <div className="order-md-2 mb-3 mb-md-0">
+              <FilterButtons
+                filterType={filterType}
+                setFilterType={setFilterType}
+                counts={filterCounts}
+              />
+            </div>
+
+            {/ POST OFFER gomb /}
             <button
+              className="order-md-3"
               style={{
                 padding: "10px 25px",
                 backgroundColor: "#000000",
                 color: "white",
                 border: "none",
                 borderRadius: "30px",
-                fontSize: "0.95rem",
+                fontSize: "clamp(0.8rem, 3vw, 0.95rem)",
                 fontWeight: "500",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
-                boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-                width: "120px",
+                width: "auto",
+                minWidth: "120px"
               }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = "#333333")}
-              onMouseLeave={(e) => (e.target.style.backgroundColor = "#000000")}
               onClick={handlePostOffer}
             >
               POST OFFER
             </button>
+
+            {/* Üres spacer - csak desktopon látszik */}
+            <div style={{ width: "120px" }} className="order-md-1 d-none d-md-block"></div>
           </div>
         </div>
 
         {/* BEÉRKEZŐ AJÁNLATOK SZEKCIÓ - ÚJ */}
-        {incomingOffers.length > 0 && (
-          <div className="row mb-4 responsive-container">
-            <div className="col-12">
-              <h3
-                style={{
-                  fontSize: "1.5rem",
-                  fontWeight: "300",
-                  color: "#333",
-                  marginBottom: "15px",
-                }}
-              >
-                Incoming Offers ({incomingOffers.length})
-              </h3>
-              <div className="row">
-                {incomingOffers.map((offer) => (
-                  <div key={offer.offer_id} className="col-md-3 mb-4">
-                    <IncomingOfferCard
-                      offer={offer}
-                      onAccept={handleAcceptOffer}
-                      onReject={handleRejectOffer}
-                    />
-                  </div>
-                ))}
+        {
+          incomingOffers.length > 0 && (
+            <div className="row mb-4">
+              <div className="col-12">
+                <h3
+                  style={{
+                    fontSize: "1.5rem",
+                    fontWeight: "300",
+                    color: "#333",
+                    marginBottom: "15px",
+                  }}
+                >
+                  Incoming Offers ({incomingOffers.length})
+                </h3>
+                <div className="row">
+                  {incomingOffers.map((offer) => (
+                    <div key={offer.offer_id} className="col-md-3 mb-4">
+                      <IncomingOfferCard
+                        offer={offer}
+                        onAccept={handleAcceptOffer}
+                        onReject={handleRejectOffer}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )
+        }
 
         {/* Saját függőben lévő offerek szekció */}
-        {myPendingOffers.length > 0 && (
-          <div className="row mb-4 responsive-container">
-            <div className="col-12">
-              <h3
-                style={{
-                  fontSize: "1.5rem",
-                  fontWeight: "300",
-                  color: "#333",
-                  marginBottom: "15px",
-                }}
-              >
-                My Pending Offers ({myPendingOffers.length})
-              </h3>
-              <div className="row">
-                {myPendingOffers.map((offer) => (
-                  <div key={offer.offer_id} className="col-md-3 mb-4">
-                    <OfferCard
-                      offer={offer}
-                      onDelete={handleDeleteOfferClick}
-                    />
-                  </div>
-                ))}
+        {
+          myPendingOffers.length > 0 && (
+            <div className="row mb-4">
+              <div className="col-12">
+                <h3
+                  style={{
+                    fontSize: "1.5rem",
+                    fontWeight: "300",
+                    color: "#333",
+                    marginBottom: "15px",
+                  }}
+                >
+                  My Pending Offers ({myPendingOffers.length})
+                </h3>
+                <div className="row">
+                  {myPendingOffers.map((offer) => (
+                    <div key={offer.offer_id} className="col-md-3 mb-4">
+                      <OfferCard
+                        offer={offer}
+                        onDelete={handleDeleteOfferClick}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )
+        }
 
         {/* Listings szekció */}
-        <div className="row mb-4 responsive-container">
-          <div className="col-12 responsive-container">
+        <div className="row mb-4">
+          <div className="col-12">
             <h3
               style={{ fontSize: "1.5rem", fontWeight: "300", color: "#333" }}
             >
@@ -404,22 +414,24 @@ export default function MarketPage() {
           ))}
         </div>
 
-        {filteredListings.length === 0 && (
-          <div className="text-center mt-5 responsive-container">
-            <h4 style={{ fontSize: "2rem", fontWeight: "300", color: "#333" }}>
-              No listings found
-            </h4>
-            <p style={{ color: "#666" }}>
-              {filterType === "all" &&
-                "Check back later or create your own listing!"}
-              {filterType === "mine" &&
-                "You don't have any active listings. Create one from your cards!"}
-              {filterType === "others" &&
-                "No other listings available at the moment."}
-            </p>
-          </div>
-        )}
-      </div>
+        {
+          filteredListings.length === 0 && (
+            <div className="text-center mt-5">
+              <h4 style={{ fontSize: "2rem", fontWeight: "300", color: "#333" }}>
+                No listings found
+              </h4>
+              <p style={{ color: "#666" }}>
+                {filterType === "all" &&
+                  "Check back later or create your own listing!"}
+                {filterType === "mine" &&
+                  "You don't have any active listings. Create one from your cards!"}
+                {filterType === "others" &&
+                  "No other listings available at the moment."}
+              </p>
+            </div>
+          )
+        }
+      </div >
 
       {/* Modalok - változatlanok */}
       {/* Delete Listing Modal */}
@@ -792,6 +804,6 @@ export default function MarketPage() {
           </button>
         </div>
       </Modal>
-    </div>
+    </div >
   );
 }
