@@ -1,6 +1,11 @@
 export default function ListingCard({ listing, user, onMakeOffer, onDelete }) {
     const getImageUrl = (item) => {
-        return item.image_url || `https://via.placeholder.com/300x120?text=${item.manufacturer}+${item.name}`;
+        // Ha van image_url az adatbázisban, azt használjuk
+        if (item.image_url && item.image_url !== "") {
+            return item.image_url;
+        }
+        // Különben placeholder
+        return `https://via.placeholder.com/300x120?text=${item.manufacturer}+${item.name}`;
     }
 
     return (
