@@ -1,6 +1,6 @@
 export default function ListingCard({ listing, user, onMakeOffer, onDelete }) {
     console.log(listing);
-
+    const carImages = import.meta.glob('../assets/*.{jpg,jpeg,png,jfif,webp}', { eager: true })
     const getImageUrl = (listing) => {
         const key = `../assets/${listing.image_url}`
         return carImages[key]?.default
