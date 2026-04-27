@@ -28,6 +28,8 @@ export default function MainPage() {
         verifyAuth()
     }, [navigation])
 
+    
+
     const handleLogout = async () => {
         await logout()
         navigation('/')

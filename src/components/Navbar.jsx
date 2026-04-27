@@ -6,7 +6,7 @@ import SettingsModal from "./SettingsModal";
 import HamburgerMenu from "./HamburgerMenu";
 import { updateUsername, updateEmail, updatePassword, deleteAccount } from "../api";
 
-export default function Navbar({ title, user, onLogout, showBackButton = false }) {
+export default function Navbar({ title, user, onLogout, showBackButton = false, showHamburgerMenu = true }) {
     const navigation = useNavigate();
     const [showSettings, setShowSettings] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -83,88 +83,93 @@ export default function Navbar({ title, user, onLogout, showBackButton = false }
                     </span>
 
                     {/* Jobb oldali ikonok */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                        <NotificationBell />
+                    {
+                        showHamburgerMenu && (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                                <NotificationBell />
 
-                        {/* Desktop: kattintható felhasználónév és gombok */}
-                        {!isMobile && (
-                            <>
-                                {user && (
-                                    <button
-                                        onClick={() => setShowSettings(true)}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: '#000000',
-                                            fontSize: '1rem',
-                                            fontWeight: '500',
-                                            cursor: 'pointer',
-                                            padding: '8px 12px',
-                                            borderRadius: '20px',
-                                            transition: 'background-color 0.3s ease'
-                                        }}
-                                        onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'}
-                                        onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
-                                    >
-                                        {user.username} ⚙️
-                                    </button>
+                                {/* Desktop: kattintható felhasználónév és gombok */}
+                                {!isMobile && (
+                                    <>
+                                        {user && (
+                                            <button
+                                                onClick={() => setShowSettings(true)}
+                                                style={{
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    color: '#000000',
+                                                    fontSize: '1rem',
+                                                    fontWeight: '500',
+                                                    cursor: 'pointer',
+                                                    padding: '8px 12px',
+                                                    borderRadius: '20px',
+                                                    transition: 'background-color 0.3s ease'
+                                                }}
+                                                onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'}
+                                                onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                                            >
+                                                {user.username} ⚙️
+                                            </button>
+                                        )}
+
+                                        {showBackButton ? (
+                                            <button
+                                                onClick={() => navigation(-1)}
+                                                style={{
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    color: '#000000',
+                                                    fontSize: '2rem',
+                                                    cursor: 'pointer',
+                                                    width: '50px',
+                                                    height: '50px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    borderRadius: '50%'
+                                                }}
+                                                onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'}
+                                                onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                                            >
+                                                ←
+                                            </button>
+                                        ) : (
+                                            <button
+                                                onClick={onLogout}
+                                                style={{
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    color: '#000000',
+                                                    fontSize: '1.8rem',
+                                                    cursor: 'pointer',
+                                                    width: '50px',
+                                                    height: '50px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    borderRadius: '50%'
+                                                }}
+                                                onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'}
+                                                onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                                            >
+                                                ↪
+                                            </button>
+                                        )}
+                                    </>
                                 )}
 
-                                {showBackButton ? (
-                                    <button
-                                        onClick={() => navigation(-1)}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: '#000000',
-                                            fontSize: '2rem',
-                                            cursor: 'pointer',
-                                            width: '50px',
-                                            height: '50px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            borderRadius: '50%'
-                                        }}
-                                        onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'}
-                                        onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
-                                    >
-                                        ←
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={onLogout}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: '#000000',
-                                            fontSize: '1.8rem',
-                                            cursor: 'pointer',
-                                            width: '50px',
-                                            height: '50px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            borderRadius: '50%'
-                                        }}
-                                        onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'}
-                                        onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
-                                    >
-                                        ↪
-                                    </button>
+                                {/* Mobil: hamburger menü */}
+                                {isMobile && (
+                                    <HamburgerMenu
+                                        user={user}
+                                        onLogout={onLogout}
+                                        onOpenSettings={handleOpenSettings}
+                                    />
                                 )}
-                            </>
-                        )}
+                            </div>
+                        )
+                    }
 
-                        {/* Mobil: hamburger menü */}
-                        {isMobile && (
-                            <HamburgerMenu 
-                                user={user} 
-                                onLogout={onLogout} 
-                                onOpenSettings={handleOpenSettings}
-                            />
-                        )}
-                    </div>
                 </div>
             </nav>
 

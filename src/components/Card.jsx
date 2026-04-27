@@ -40,7 +40,7 @@ export default function Card({ card, onClick, showCount = false, count = 1 }) {
                 alt={`${card.manufacturer} ${card.name}`}
                 style={{
                     width: '100%',
-                    height: '150px',
+                    height: '200px',
                     objectFit: 'cover',
                     borderBottom: '1px solid #eee'
                 }}
