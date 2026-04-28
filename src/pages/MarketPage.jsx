@@ -295,7 +295,7 @@ export default function MarketPage() {
   const handleRejectOffer = async (offer) => {
     try {
       // deleteOffer-t használunk a rejectOffer helyett
-      const res = await deleteOffer(offer.offer_id);
+      const res = await rejectOffer(offer.offer_id);
       
       if (res.result) {
         alert("Offer rejected successfully!");
