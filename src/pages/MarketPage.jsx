@@ -291,9 +291,12 @@ export default function MarketPage() {
     }
   };
 
+  // ========== ITT A JAVÍTOTT handleRejectOffer függvény ==========
   const handleRejectOffer = async (offer) => {
     try {
-      const res = await rejectOffer(offer.offer_id);
+      // deleteOffer-t használunk a rejectOffer helyett
+      const res = await deleteOffer(offer.offer_id);
+      
       if (res.result) {
         alert("Offer rejected successfully!");
         await Promise.all([
@@ -310,6 +313,7 @@ export default function MarketPage() {
       alert("Something went wrong");
     }
   };
+  // ========== JAVÍTÁS VÉGE ==========
 
   const handleLogout = async () => {
     await logout();
