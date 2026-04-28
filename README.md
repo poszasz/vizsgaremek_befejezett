@@ -1,16 +1,132 @@
-# React + Vite
+## Készítette
+- [Tóth Ádám Kornél](https://github.com/poszasz)
+- [Várhidi Olivér György](https://github.com/fonok02013)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🏪 Bevezetés
+Car Cards egy autós kártyagyűjtő webalkalmazás. A játékosok packokat nyithatnak, autókat gyűjthetnek, és cserélhetnek egymással a beépített piactéren. A felhasználók ajánlatokat küldhetnek, amelyeket elfogadhatnak vagy elutasíthatnak. Az értesítések segítenek nyomon követni a tranzakciókat. A cél a legnagyobb és legértékesebb gyűjtemény összeállítása.
 
-## React Compiler
+## Tesztelés
+- Netlify Deployed Page: [Megtekintés](https://mycarcards.netlify.app/) 
+- Felhasználó : teszt@gmail.com | Jelszó: teszt 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+## 📁 Projekt szerkezet
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```markdown
+├── dist/
+├── node_modules/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Button.jsx
+│   │   ├── Card.jsx
+│   │   ├── FilterButtons.jsx
+│   │   ├── HamburgerMenu.jsx
+│   │   ├── IncomingOfferCard.jsx
+│   │   ├── ListingCard.jsx
+│   │   ├── LoadingSpinner.jsx
+│   │   ├── MainLayout.jsx
+│   │   ├── MainMenuButton.jsx
+│   │   ├── Modal.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── NotificationBell.jsx
+│   │   ├── OfferCard.jsx
+│   │   ├── SettingsModal.jsx
+│   │   └── TextBox.jsx
+│   ├── pages/
+│   │   ├── HomePage.jsx
+│   │   ├── LoginPage.jsx
+│   │   ├── MainPage.jsx
+│   │   ├── MarketPage.jsx
+│   │   ├── MyCardsPage.jsx
+│   │   ├── OpenpacksPage.jsx
+│   │   └── RegistrationPage.jsx
+│   ├── styles/
+│   │   └── common.css
+│   ├── api.js
+│   ├── index.css
+│   └── main.jsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+└── vite.config.js
+```
+
+## ⬇️ Telepítés
+```markdown
+git clone https://github.com/fonok02013/vizsgaremek_befejezett.git
+cd vizsgaremek_befejezett
+npm i
+npm run dev
+```
+ 
+## Prototípus
+A projekt kezdeti szakaszában egy teljeskörű tervezetet készítettünk a felhasználói felülethez
+
+<img width="1237" height="792" alt="image" src="https://github.com/user-attachments/assets/d986a5a9-0b4b-4f79-b2b4-ac46167f3c0e" />
+
+[Figma link](https://www.figma.com/design/gprgQnoreBm3k01eIOZELb/Car_cards?t=Azo15AE7nCumdZ2U-1) 
+
+### HomePage.jsx
+
+<img width="1915" height="948" alt="image" src="https://github.com/user-attachments/assets/542b5f74-219d-495a-8db0-3237ef042fad" />
+
+
+### MainPage.jsx
+
+- Itt látható a Market, Open Packs és a My Cards gombok
+
+![image](https://snipboard.io/2gSmnK.jpg)
+
+
+### MarketPage.jsx
+
+- Itt érjük el a market felületet, ahol te és más felhasználók tudnak kártyákat cserélni
+- Tudunk szűrni a összes listingre, a sajátunkra és másokéra
+- Tudunk postot létrehozni, ahol más felhasználóktudnak ajánlatot tenni a feltett kártyára
+![image](https://snipboard.io/jtJP1O.jpg)
+
+
+### OpenPacksPage.jsx
+
+- Itt lehetősé nyílik új kárytákat nyitni
+- Nyitás utána, megjelenik az előző nyitott kártya
+
+![image](https://snipboard.io/evWFMZ.jpg)![image](https://snipboard.io/LawKg2.jpg)
+
+### MyCardsPage.jsx
+
+- Itt megjelennek a már begyűjtött kártyákat
+- A kártyákra kattintva, megjelennek az autónak a részletesebb leírása
+
+![image](https://snipboard.io/op8vyq.jpg)![image](https://snipboard.io/8hG9Cl.jpg)
+
+### SettingsModal.jsx
+
+- Itt lehetősé nyílik a felhasználó adatainak módosítására (felhasználónév, email cím, jelszó)
+- Fiók törlésének lehetősége
+
+![image](https://snipboard.io/10oBVr.jpg)![image](https://snipboard.io/pkvIzl.jpg) ![image](https://snipboard.io/uzZl6N.jpg)
+
+
+## Responsive kialakítás
+
+<img width="3982" height="1500" alt="Group 1" src="https://github.com/user-attachments/assets/e343a48e-fb89-414d-b575-e5a9e73a92de" />
+
+
+
+
+## 📇 Továbbfejlesztési lehetőségek
+- Kártya bázis bővítése
+- Felhasználó barátabb felület.
+- Több fajta kártya ritkaság
+- Több kereskedési lehetőség
+- Látványosabb kártya nyitás
+- Szebb design 
